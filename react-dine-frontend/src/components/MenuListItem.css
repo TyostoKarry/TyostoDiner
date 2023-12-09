@@ -10,9 +10,7 @@
   overflow: hidden;
   margin: 10px;
 
-  background-image: url("../assets/menuItemBackground.png");
-  background-size: cover;
-  background-position: center;
+  background-color: rgb(230, 230, 230);
 }
 
 .menu__list-item__image {
@@ -25,6 +23,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  margin: 10px;
 }
 
 .menu__list-item__h1 {
@@ -49,11 +48,29 @@
 
 .menu__list-item__add-to-cart-h1 {
   flex: 10;
+  border: 1px solid white;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: black;
+}
+
+.menu__list-item__add-to-cart-button {
+  flex: 10;
   border: 1px solid black;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: x-large;
+  background-color: black;
+}
+
+.menu__list-item__add-to-cart-button:hover {
+  transform: scale(1.05);
+  transition-duration: 100ms;
 }
 
 .menu__list-item__add-to-cart-h2 {
@@ -66,4 +83,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-left: 1px solid rgb(230, 230, 230);
+}
+
+.menu__list-item__add-to-cart-h2:hover {
+  transform: scale(1.05);
+  transition-duration: 100ms;
 }
