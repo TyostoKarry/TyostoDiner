@@ -1,17 +1,28 @@
 import "./MenuListItem.css";
 import { useState } from "react";
 
-const MenuListItem = ({ name, image, description, price }) => {
-  const [count, setCount] = useState(1);
+const MenuListItem = ({ id, name, image, description, price }) => {
+  const [quantity, setQuantity] = useState(1);
 
   const handleDecrement = () => {
-    if (count > 1) {
-      setCount(count - 1);
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
     }
   };
 
   const handleAddition = () => {
-    setCount(count + 1);
+    if (quantity < 99) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    const item = {
+      id: id,
+      quantity: quantity,
+    };
+
+    console.log("Added item", item);
   };
 
   return (
@@ -27,19 +38,24 @@ const MenuListItem = ({ name, image, description, price }) => {
       </div>
       <div className="menu__list-item__add-to-cart-container">
         <button
-          className="menu__list-item__add-to-cart-button"
+          className="menu__list-item__quantity-button"
           onClick={handleDecrement}
         >
           ➖
         </button>
-        <h1 className="menu__list-item__add-to-cart-h1">{count}</h1>
+        <h1 className="menu__list-item__add-to-cart-h1">{quantity}</h1>
         <button
-          className="menu__list-item__add-to-cart-button"
+          className="menu__list-item__quantity-button"
           onClick={handleAddition}
         >
           ➕
         </button>
-        <h2 className="menu__list-item__add-to-cart-h2">Add to cart</h2>
+        <button
+          className="menu__list-item__add-to-cart-button"
+          onClick={handleAddToCart}
+        >
+          Add to cart
+        </button>
       </div>
     </li>
   );

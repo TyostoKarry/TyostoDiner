@@ -9,8 +9,8 @@ const NavigationBar = () => {
         Menu
       </Link>
       <h1 className="navBar__title">TyöstöDiner</h1>
-      <Link className="navBar__button" to={"/checkout"}>
-        Checkout
+      <Link className="navBar__button" to={"/cart"}>
+        Cart
       </Link>
     </div>
   );

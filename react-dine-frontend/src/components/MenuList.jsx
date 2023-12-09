@@ -8,6 +8,7 @@ const MenuList = ({ menuItems }) => {
       {menuItems?.map((item) => (
         <MenuListItem
           key={item.id}
+          id={item.id}
           name={item.name}
           image={item.image}
           description={item.description}
