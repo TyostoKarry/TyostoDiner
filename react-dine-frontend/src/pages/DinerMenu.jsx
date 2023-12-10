@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import "./DinerMenu.css";
-import "../components/MenuList";
 import { useState, useCallback, useEffect } from "react";
 import MenuList from "../components/MenuList";
 
@@ -12,9 +11,8 @@ const DinerMenu = () => {
     try {
       const response = await axios.get("http://localhost:5000/api/dishes");
       const data = await response.data;
-      console.log(data);
       setMenuItems(data);
-    } catch {
+    } catch (error) {
       console.error(error);
     }
   }, []);

@@ -1,0 +1,25 @@
+.cart__list-item {
+  display: flex;
+  position: relative;
+  list-style-type: none;
+  height: 150px;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+.cart__list-item__image {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.cart__list-item-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart__list-item-text {
+  color: black;
+}
