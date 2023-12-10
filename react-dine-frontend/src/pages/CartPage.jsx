@@ -12,12 +12,14 @@ const CartPage = () => {
       const response = await axios.get("http://localhost:5000/api/dishes");
       const data = await response.data;
 
+      // Get cart items from localStorage map item id:s to quantitys
       const cartData = JSON.parse(localStorage.getItem("cart")) || [];
       const cartItemMap = cartData.reduce((acc, item) => {
         acc[item.id] = item.quantity;
         return acc;
       }, {});
 
+      // Filter fetched data to only have cart items and add quantity to array
       const filteredItems = data
         .filter((item) => cartItemMap.hasOwnProperty(item.id))
         .map((item) => ({ ...item, quantity: cartItemMap[item.id] }));
@@ -30,11 +32,10 @@ const CartPage = () => {
 
   useEffect(() => {
     fetchCartItems();
-  }, [fetchCartItems]);
+  }, [fetchCartItems, cartItems]);
 
   let context = <h1 className="centeredStyle">Cart is empty</h1>;
   if (cartItems.length != 0) {
-    //context = <h1 className="centeredStyle">Cart has items</h1>;
     context = <CartList cartItems={cartItems} />;
   }
 

@@ -1,20 +1,9 @@
 import "./MenuListItem.css";
 import { useState } from "react";
+import QuantityCounter from "./QuantityCounter";
 
 const MenuListItem = ({ id, name, image, description, price }) => {
   const [quantity, setQuantity] = useState(1);
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  const handleAddition = () => {
-    if (quantity < 99) {
-      setQuantity(quantity + 1);
-    }
-  };
 
   const handleAddToCart = () => {
     const item = {
@@ -22,11 +11,20 @@ const MenuListItem = ({ id, name, image, description, price }) => {
       quantity: quantity,
     };
 
-    console.log("Added item", item);
-
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push(item);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === id);
+
+    if (existingItemIndex !== -1) {
+      // Item exists. Update item
+      const updatedCart = cart.map((item) =>
+        item.id === id ? { ...item, quantity: quantity } : item
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } else {
+      // Item doesn't exist. Add new item
+      cart.push(item);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
   };
 
   return (
@@ -41,19 +39,11 @@ const MenuListItem = ({ id, name, image, description, price }) => {
         <h3 className="menu__list-item__h3">Price: {price}€</h3>
       </div>
       <div className="menu__list-item__add-to-cart-container">
-        <button
-          className="menu__list-item__quantity-button"
-          onClick={handleDecrement}
-        >
-          ➖
-        </button>
-        <h1 className="menu__list-item__add-to-cart-h1">{quantity}</h1>
-        <button
-          className="menu__list-item__quantity-button"
-          onClick={handleAddition}
-        >
-          ➕
-        </button>
+        <QuantityCounter
+          quantity={quantity}
+          setQuantity={setQuantity}
+          minAmmount={1}
+        />
         <button
           className="menu__list-item__add-to-cart-button"
           onClick={handleAddToCart}

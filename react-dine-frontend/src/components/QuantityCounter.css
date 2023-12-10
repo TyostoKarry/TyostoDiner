@@ -1,0 +1,27 @@
+.quantity__h1 {
+  flex: 10;
+  border: 1px solid rgb(230, 230, 230);
+  height: 100%;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: black;
+}
+
+.quantity__button {
+  flex: 10;
+  border: 1px solid black;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
+  background-color: black;
+}
+
+.quantity__button:hover {
+  transform: scale(1.05);
+  transition-duration: 100ms;
+}

@@ -1,0 +1,35 @@
+.checkout__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkout__form-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  height: 25px;
+  width: 300px;
+  gap: 10px;
+}
+
+.checkout__form-info {
+  color: black;
+  margin: 0;
+}
+
+.checkout__form-input {
+  background-color: white;
+  color: black;
+}
+
+.checkout__form-button {
+  margin-bottom: 10px;
+  width: 150px;
+  height: 50px;
+  font-size: larger;
+  font-weight: bold;
+  color: black;
+  background-color: rgb(46, 46, 255);
+}

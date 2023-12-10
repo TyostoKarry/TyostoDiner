@@ -46,34 +46,6 @@
   width: 100%;
 }
 
-.menu__list-item__add-to-cart-h1 {
-  flex: 10;
-  border: 1px solid white;
-  height: 100%;
-  min-width: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  background-color: black;
-}
-
-.menu__list-item__quantity-button {
-  flex: 10;
-  border: 1px solid black;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: x-large;
-  background-color: black;
-}
-
-.menu__list-item__quantity-button:hover {
-  transform: scale(1.05);
-  transition-duration: 100ms;
-}
-
 .menu__list-item__add-to-cart-button {
   flex: 70;
   height: 100%;
