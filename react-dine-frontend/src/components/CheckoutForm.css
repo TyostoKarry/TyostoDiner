@@ -24,6 +24,12 @@
   color: black;
 }
 
+.checkout__form-input-error {
+  border-color: red;
+  background-color: white;
+  color: black;
+}
+
 .checkout__form-button {
   margin-bottom: 10px;
   width: 150px;

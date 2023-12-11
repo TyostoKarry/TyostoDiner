@@ -11,14 +11,18 @@ const QuantityCounter = ({
   const handleDecrement = () => {
     if (quantity > minAmmount) {
       setQuantity(quantity - 1);
-      setQuantityChange(!quantityChange);
+      if (setQuantityChange) {
+        setQuantityChange(!quantityChange);
+      }
     }
   };
 
   const handleAddition = () => {
     if (quantity < 99) {
       setQuantity(quantity + 1);
-      setQuantityChange(!quantityChange);
+      if (setQuantityChange) {
+        setQuantityChange(!quantityChange);
+      }
     }
   };
   return (

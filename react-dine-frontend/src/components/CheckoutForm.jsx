@@ -53,7 +53,7 @@ const CheckoutForm = () => {
       validationSchema={validationSchema}
       onSubmit={submitHandler}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, errors, touched }) => (
         <Form className="checkout__form">
           <div className="checkout__form-input-container">
             <label htmlFor="name" className="checkout__form-label">
@@ -63,7 +63,11 @@ const CheckoutForm = () => {
               type="text"
               id="name"
               name="name"
-              className="checkout__form-input"
+              className={
+                errors.name && touched.name
+                  ? "checkout__form-input-error"
+                  : "checkout__form-input"
+              }
             />
           </div>
           <div className="checkout__form-input-container">
@@ -74,7 +78,11 @@ const CheckoutForm = () => {
               type="email"
               id="email"
               name="email"
-              className="checkout__form-input"
+              className={
+                errors.email && touched.email
+                  ? "checkout__form-input-error"
+                  : "checkout__form-input"
+              }
             />
           </div>
           <div className="checkout__form-input-container">
@@ -85,7 +93,11 @@ const CheckoutForm = () => {
               type="text"
               id="street"
               name="street"
-              className="checkout__form-input"
+              className={
+                errors.street && touched.street
+                  ? "checkout__form-input-error"
+                  : "checkout__form-input"
+              }
             />
           </div>
           <div className="checkout__form-input-container">
@@ -96,7 +108,11 @@ const CheckoutForm = () => {
               type="text"
               id="postalCode"
               name="postalCode"
-              className="checkout__form-input"
+              className={
+                errors.postalCode && touched.postalCode
+                  ? "checkout__form-input-error"
+                  : "checkout__form-input"
+              }
             />
           </div>
           <div className="checkout__form-input-container">
@@ -107,7 +123,11 @@ const CheckoutForm = () => {
               type="text"
               id="city"
               name="city"
-              className="checkout__form-input"
+              className={
+                errors.city && touched.city
+                  ? "checkout__form-input-error"
+                  : "checkout__form-input"
+              }
             />
           </div>
           <ErrorMessage name="name" component="div" className="error-message" />

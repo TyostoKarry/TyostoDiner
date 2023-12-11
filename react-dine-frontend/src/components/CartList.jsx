@@ -13,22 +13,24 @@ const CartList = ({ cartItems, quantityChange, setQuantityChange }) => {
   }, [cartItems]);
 
   return (
-    <div className="cart__list">
-      <h1 className="cart__list-h1">Items on cart</h1>
-      {cartItems?.map((item) => (
-        <CartListItem
-          key={item.id}
-          id={item.id}
-          name={item.name}
-          image={item.image}
-          price={item.price}
-          startQuantity={item.quantity}
-          quantityChange={quantityChange}
-          setQuantityChange={setQuantityChange}
-        />
-      ))}
-      <h1 className="cart__list-h1">Total: {totalCost.toFixed(2)}€</h1>
-      <CheckoutForm />
+    <div className="cart__list-container">
+      <div className="cart__list">
+        <h1 className="cart__list-h1">Items on cart</h1>
+        {cartItems?.map((item) => (
+          <CartListItem
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            image={item.image}
+            price={item.price}
+            startQuantity={item.quantity}
+            quantityChange={quantityChange}
+            setQuantityChange={setQuantityChange}
+          />
+        ))}
+        <h1 className="cart__list-h1">Total: {totalCost.toFixed(2)}€</h1>
+        <CheckoutForm />
+      </div>
     </div>
   );
 };
