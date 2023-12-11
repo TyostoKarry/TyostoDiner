@@ -3,7 +3,15 @@ import "./CartListItem.css";
 import { useState, useEffect } from "react";
 import QuantityCounter from "./QuantityCounter";
 
-const CartListItem = ({ id, name, image, price, startQuantity }) => {
+const CartListItem = ({
+  id,
+  name,
+  image,
+  price,
+  startQuantity,
+  quantityChange,
+  setQuantityChange,
+}) => {
   const [quantity, setQuantity] = useState(startQuantity);
 
   let priceText = price + "€";
@@ -45,6 +53,8 @@ const CartListItem = ({ id, name, image, price, startQuantity }) => {
             quantity={quantity}
             setQuantity={setQuantity}
             minAmmount={0}
+            quantityChange={quantityChange}
+            setQuantityChange={setQuantityChange}
           />
         </div>
       </div>

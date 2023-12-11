@@ -1,16 +1,24 @@
 import "./QuantityCounter.css";
 import { useState } from "react";
 
-const QuantityCounter = ({ quantity, setQuantity, minAmmount }) => {
+const QuantityCounter = ({
+  quantity,
+  setQuantity,
+  minAmmount,
+  quantityChange,
+  setQuantityChange,
+}) => {
   const handleDecrement = () => {
     if (quantity > minAmmount) {
       setQuantity(quantity - 1);
+      setQuantityChange(!quantityChange);
     }
   };
 
   const handleAddition = () => {
     if (quantity < 99) {
       setQuantity(quantity + 1);
+      setQuantityChange(!quantityChange);
     }
   };
   return (

@@ -6,6 +6,8 @@ import CartList from "../components/CartList";
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
+  // For updating total cost when button is clicked
+  const [quantityChange, setQuantityChange] = useState(false);
 
   const fetchCartItems = useCallback(async () => {
     try {
@@ -32,11 +34,17 @@ const CartPage = () => {
 
   useEffect(() => {
     fetchCartItems();
-  }, [fetchCartItems, cartItems]);
+  }, [fetchCartItems, quantityChange]);
 
   let context = <h1 className="centeredStyle">Cart is empty</h1>;
   if (cartItems.length != 0) {
-    context = <CartList cartItems={cartItems} />;
+    context = (
+      <CartList
+        cartItems={cartItems}
+        quantityChange={quantityChange}
+        setQuantityChange={setQuantityChange}
+      />
+    );
   }
 
   return context;

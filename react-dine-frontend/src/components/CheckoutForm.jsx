@@ -1,9 +1,10 @@
+import axios from "axios";
 import "./CheckoutForm.css";
 
 import { Form, Field, ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 
-const CheckoutForm = ({ cartItems }) => {
+const CheckoutForm = () => {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -12,19 +13,32 @@ const CheckoutForm = ({ cartItems }) => {
     city: Yup.string().required("City is required"),
   });
 
-  const submitHandler = (values) => {
+  const submitHandler = async (values, { setSubmitting }) => {
+    const cartData = JSON.parse(localStorage.getItem("cart")) || [];
+
     const order = {
-      customer: {
-        name: values.name,
-        email: values.email,
-        street: values.street,
-        "postal-code": values.postalCode,
-        city: values.city,
+      order: {
+        customer: {
+          name: values.name,
+          email: values.email,
+          street: values.street,
+          "postal-code": values.postalCode,
+          city: values.city,
+        },
+        items: cartData,
       },
-      items: [cartItems],
     };
-    console.log("Form data:", values);
-    console.log(order);
+
+    axios
+      .post("http://localhost:5000/api/orders", order)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    setSubmitting(false);
   };
 
   return (

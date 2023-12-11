@@ -4,7 +4,7 @@ import CartListItem from "./CartListItem";
 import CheckoutForm from "./CheckoutForm";
 import { useMemo } from "react";
 
-const CartList = ({ cartItems }) => {
+const CartList = ({ cartItems, quantityChange, setQuantityChange }) => {
   // Calculate total cost
   const totalCost = useMemo(() => {
     return cartItems.reduce((acc, item) => {
@@ -23,10 +23,12 @@ const CartList = ({ cartItems }) => {
           image={item.image}
           price={item.price}
           startQuantity={item.quantity}
+          quantityChange={quantityChange}
+          setQuantityChange={setQuantityChange}
         />
       ))}
       <h1 className="cart__list-h1">Total: {totalCost.toFixed(2)}€</h1>
-      <CheckoutForm cartItems={cartItems} />
+      <CheckoutForm />
     </div>
   );
 };
