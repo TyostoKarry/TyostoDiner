@@ -7,6 +7,9 @@ const CartListItem = ({ id, name, image, price, startQuantity }) => {
   const [quantity, setQuantity] = useState(startQuantity);
 
   let priceText = price + "€";
+  if (quantity > 1) {
+    priceText = quantity + " X " + price + "€";
+  }
 
   const updateLocalStorage = (itemId, updatedQuantity) => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -36,13 +39,13 @@ const CartListItem = ({ id, name, image, price, startQuantity }) => {
       />
       <div className="cart__list-item-container">
         <h1 className="cart__list-item-text">{name}</h1>
+        <h2 className="cart__list-item-text">{priceText}</h2>
         <div className="cart__list-item-price-container">
           <QuantityCounter
             quantity={quantity}
             setQuantity={setQuantity}
             minAmmount={0}
           />
-          <h2 className="cart__list-item-text">{priceText}</h2>
         </div>
       </div>
     </li>

@@ -51,11 +51,6 @@ const CheckoutForm = ({ cartItems }) => {
               name="name"
               className="checkout__form-input"
             />
-            <ErrorMessage
-              name="name"
-              component="div"
-              className="error-message"
-            />
           </div>
           <div className="checkout__form-input-container">
             <label htmlFor="email" className="checkout__form-label">
@@ -66,11 +61,6 @@ const CheckoutForm = ({ cartItems }) => {
               id="email"
               name="email"
               className="checkout__form-input"
-            />
-            <ErrorMessage
-              name="email"
-              component="div"
-              className="error-message"
             />
           </div>
           <div className="checkout__form-input-container">
@@ -83,11 +73,6 @@ const CheckoutForm = ({ cartItems }) => {
               name="street"
               className="checkout__form-input"
             />
-            <ErrorMessage
-              name="street"
-              component="div"
-              className="error-message"
-            />
           </div>
           <div className="checkout__form-input-container">
             <label htmlFor="postalCode" className="checkout__form-label">
@@ -98,11 +83,6 @@ const CheckoutForm = ({ cartItems }) => {
               id="postalCode"
               name="postalCode"
               className="checkout__form-input"
-            />
-            <ErrorMessage
-              name="postalCode"
-              component="div"
-              className="error-message"
             />
           </div>
           <div className="checkout__form-input-container">
@@ -115,12 +95,24 @@ const CheckoutForm = ({ cartItems }) => {
               name="city"
               className="checkout__form-input"
             />
-            <ErrorMessage
-              name="city"
-              component="div"
-              className="error-message"
-            />
           </div>
+          <ErrorMessage name="name" component="div" className="error-message" />
+          <ErrorMessage
+            name="email"
+            component="div"
+            className="error-message"
+          />
+          <ErrorMessage
+            name="street"
+            component="div"
+            className="error-message"
+          />
+          <ErrorMessage
+            name="postalCode"
+            component="div"
+            className="error-message"
+          />
+          <ErrorMessage name="city" component="div" className="error-message" />
           <button
             type="submit"
             className="checkout__form-button"
