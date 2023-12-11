@@ -1,84 +1,136 @@
 import "./CheckoutForm.css";
 
-import { useState } from "react";
+import { Form, Field, ErrorMessage, Formik } from "formik";
+import * as Yup from "yup";
 
-const CheckoutForm = () => {
-  const [enteredName, setEnteredName] = useState("");
-  const [enteredEmail, setenteredEmail] = useState("");
-  const [enteredStreet, setEnteredStreet] = useState("");
-  const [enteredPostalCode, setEnteredPostalCode] = useState("");
-  const [enteredCity, setEnteredCity] = useState("");
+const CheckoutForm = ({ cartItems }) => {
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    street: Yup.string().required("Street is required"),
+    postalCode: Yup.string().required("Postal code is required"),
+    city: Yup.string().required("City is required"),
+  });
 
-  const nameAddedHandler = (event) => {
-    setEnteredName(event.target.value);
+  const submitHandler = (values) => {
+    const order = {
+      customer: {
+        name: values.name,
+        email: values.email,
+        street: values.street,
+        "postal-code": values.postalCode,
+        city: values.city,
+      },
+      items: [cartItems],
+    };
+    console.log("Form data:", values);
+    console.log(order);
   };
-
-  const emailAddedHandler = (event) => {
-    setenteredEmail(event.target.value);
-  };
-  const streetAddedHandler = (event) => {
-    setEnteredStreet(event.target.value);
-  };
-  const postalCodeAddedHandler = (event) => {
-    setEnteredPostalCode(event.target.value);
-  };
-  const cityAddedHandler = (event) => {
-    setEnteredCity(event.target.value);
-  };
-
-  const checkoutHandler = () => {};
 
   return (
-    <form onSubmit={checkoutHandler} className="checkout__form">
-      <div className="checkout__form-input-container">
-        <p className="checkout__form-info">Name: </p>
-        <input
-          type="text"
-          onChange={nameAddedHandler}
-          value={enteredName}
-          className="checkout__form-input"
-        />
-      </div>
-      <div className="checkout__form-input-container">
-        <p className="checkout__form-info">Email: </p>
-        <input
-          type="email"
-          onChange={emailAddedHandler}
-          value={enteredEmail}
-          className="checkout__form-input"
-        />
-      </div>
-      <div className="checkout__form-input-container">
-        <p className="checkout__form-info">Street: </p>
-        <input
-          type="text"
-          onChange={streetAddedHandler}
-          value={enteredStreet}
-          className="checkout__form-input"
-        />
-      </div>
-      <div className="checkout__form-input-container">
-        <p className="checkout__form-info">postal-code: </p>
-        <input
-          type="text"
-          onChange={postalCodeAddedHandler}
-          value={enteredPostalCode}
-          className="checkout__form-input"
-        />
-      </div>
-      <div className="checkout__form-input-container">
-        <p className="checkout__form-info">city: </p>
-        <input
-          type="text"
-          onChange={cityAddedHandler}
-          value={enteredCity}
-          className="checkout__form-input"
-        />
-      </div>
-      <button type="submit" className="checkout__form-button">
-        Order
-      </button>
-    </form>
+    <Formik
+      initialValues={{
+        name: "",
+        email: "",
+        street: "",
+        postalCode: "",
+        city: "",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={submitHandler}
+    >
+      {({ isSubmitting }) => (
+        <Form className="checkout__form">
+          <div className="checkout__form-input-container">
+            <label htmlFor="name" className="checkout__form-label">
+              Name
+            </label>
+            <Field
+              type="text"
+              id="name"
+              name="name"
+              className="checkout__form-input"
+            />
+            <ErrorMessage
+              name="name"
+              component="div"
+              className="error-message"
+            />
+          </div>
+          <div className="checkout__form-input-container">
+            <label htmlFor="email" className="checkout__form-label">
+              Email
+            </label>
+            <Field
+              type="email"
+              id="email"
+              name="email"
+              className="checkout__form-input"
+            />
+            <ErrorMessage
+              name="email"
+              component="div"
+              className="error-message"
+            />
+          </div>
+          <div className="checkout__form-input-container">
+            <label htmlFor="street" className="checkout__form-label">
+              Street
+            </label>
+            <Field
+              type="text"
+              id="street"
+              name="street"
+              className="checkout__form-input"
+            />
+            <ErrorMessage
+              name="street"
+              component="div"
+              className="error-message"
+            />
+          </div>
+          <div className="checkout__form-input-container">
+            <label htmlFor="postalCode" className="checkout__form-label">
+              Postal-code
+            </label>
+            <Field
+              type="text"
+              id="postalCode"
+              name="postalCode"
+              className="checkout__form-input"
+            />
+            <ErrorMessage
+              name="postalCode"
+              component="div"
+              className="error-message"
+            />
+          </div>
+          <div className="checkout__form-input-container">
+            <label htmlFor="city" className="checkout__form-label">
+              City
+            </label>
+            <Field
+              type="text"
+              id="city"
+              name="city"
+              className="checkout__form-input"
+            />
+            <ErrorMessage
+              name="city"
+              component="div"
+              className="error-message"
+            />
+          </div>
+          <button
+            type="submit"
+            className="checkout__form-button"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Submitting..." : "Order"}
+          </button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 

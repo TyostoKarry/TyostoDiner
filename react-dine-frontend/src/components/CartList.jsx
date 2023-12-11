@@ -26,7 +26,7 @@ const CartList = ({ cartItems }) => {
         />
       ))}
       <h1 className="cart__list-h1">Total: {totalCost.toFixed(2)}€</h1>
-      <CheckoutForm />
+      <CheckoutForm cartItems={cartItems} />
     </div>
   );
 };

@@ -14,7 +14,7 @@
   gap: 10px;
 }
 
-.checkout__form-info {
+.checkout__form-label {
   color: black;
   margin: 0;
 }
@@ -32,4 +32,8 @@
   font-weight: bold;
   color: black;
   background-color: rgb(46, 46, 255);
+}
+
+.error-message {
+  color: black;
 }
