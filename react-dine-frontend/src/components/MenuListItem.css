@@ -10,7 +10,7 @@
   overflow: hidden;
   margin: 10px;
 
-  background-color: rgb(230, 230, 230);
+  background-color: #ff8800;
 }
 
 .menu__list-item__image {
@@ -28,7 +28,8 @@
 
 .menu__list-item__h1 {
   margin: 0;
-  color: black;
+  color: white;
+  text-shadow: 0 4px 4px black;
 }
 
 .menu__list-item__h3 {
@@ -57,7 +58,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid rgb(230, 230, 230);
+  border-left: 1px solid #ff8800;
 }
 
 .menu__list-item__add-to-cart-button:hover {

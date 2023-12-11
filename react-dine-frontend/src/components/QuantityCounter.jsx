@@ -30,7 +30,13 @@ const QuantityCounter = ({
       <button className="quantity__button" onClick={handleDecrement}>
         ➖
       </button>
-      <h1 className="quantity__h1">{quantity}</h1>
+      <h1
+        className={
+          setQuantityChange ? "quantity__h1-cart" : "quantity__h1-menu"
+        }
+      >
+        {quantity}
+      </h1>
       <button className="quantity__button" onClick={handleAddition}>
         ➕
       </button>

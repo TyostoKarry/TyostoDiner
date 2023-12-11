@@ -1,6 +1,18 @@
-.quantity__h1 {
+.quantity__h1-cart {
   flex: 10;
   border: 1px solid rgb(230, 230, 230);
+  height: 100%;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: black;
+}
+
+.quantity__h1-menu {
+  flex: 10;
+  border: 1px solid #ff8800;
   height: 100%;
   min-width: 60px;
   display: flex;
