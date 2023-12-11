@@ -7,11 +7,6 @@
   margin-inline: 50px;
 }
 
-.navBar__title {
-  color: black;
-  font-size: 50px;
-}
-
 .navBar__button {
   border: 1px solid black;
   border-radius: 5px;

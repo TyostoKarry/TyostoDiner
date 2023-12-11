@@ -8,7 +8,7 @@ const NavigationBar = () => {
       <Link className="navBar__button" to={"/"}>
         Menu
       </Link>
-      <h1 className="navBar__title">TyöstöDiner</h1>
+      <img src={"./src/assets/TyostoDinerTextLogo.png"} />
       <Link className="navBar__button" to={"/cart"}>
         Cart
       </Link>
