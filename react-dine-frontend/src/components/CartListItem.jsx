@@ -9,8 +9,8 @@ const CartListItem = ({
   image,
   price,
   startQuantity,
-  quantityChange,
-  setQuantityChange,
+  buttonClicked,
+  setbuttonClicked,
 }) => {
   const [quantity, setQuantity] = useState(startQuantity);
 
@@ -53,8 +53,8 @@ const CartListItem = ({
             quantity={quantity}
             setQuantity={setQuantity}
             minAmmount={0}
-            quantityChange={quantityChange}
-            setQuantityChange={setQuantityChange}
+            buttonClicked={buttonClicked}
+            setbuttonClicked={setbuttonClicked}
           />
         </div>
       </div>

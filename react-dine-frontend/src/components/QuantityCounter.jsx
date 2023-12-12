@@ -5,39 +5,46 @@ const QuantityCounter = ({
   quantity,
   setQuantity,
   minAmmount,
-  quantityChange,
-  setQuantityChange,
+  buttonClicked,
+  setbuttonClicked,
 }) => {
   const handleDecrement = () => {
-    if (quantity > minAmmount) {
-      setQuantity(quantity - 1);
-      if (setQuantityChange) {
-        setQuantityChange(!quantityChange);
-      }
+    setQuantity(quantity - 1);
+    // For updating cartItems on CartPage
+    if (setbuttonClicked) {
+      setbuttonClicked(!buttonClicked);
     }
   };
 
   const handleAddition = () => {
-    if (quantity < 99) {
-      setQuantity(quantity + 1);
-      if (setQuantityChange) {
-        setQuantityChange(!quantityChange);
-      }
+    setQuantity(quantity + 1);
+    // For updating cartItems on CartPage
+    if (setbuttonClicked) {
+      setbuttonClicked(!buttonClicked);
     }
   };
+
   return (
     <>
-      <button className="quantity__button" onClick={handleDecrement}>
+      <button
+        className="quantity__button"
+        onClick={handleDecrement}
+        disabled={quantity === minAmmount}
+        style={quantity === minAmmount ? { pointerEvents: "none" } : {}}
+      >
         ➖
       </button>
       <h1
-        className={
-          setQuantityChange ? "quantity__h1-cart" : "quantity__h1-menu"
-        }
+        className={setbuttonClicked ? "quantity__h1-cart" : "quantity__h1-menu"}
       >
         {quantity}
       </h1>
-      <button className="quantity__button" onClick={handleAddition}>
+      <button
+        className="quantity__button"
+        onClick={handleAddition}
+        disabled={quantity === 99}
+        style={quantity === 99 ? { pointerEvents: "none" } : {}}
+      >
         ➕
       </button>
     </>

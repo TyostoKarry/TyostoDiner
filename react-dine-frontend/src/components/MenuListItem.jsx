@@ -1,5 +1,7 @@
 import "./MenuListItem.css";
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import QuantityCounter from "./QuantityCounter";
 
 const MenuListItem = ({ id, name, image, description, price }) => {
@@ -15,15 +17,43 @@ const MenuListItem = ({ id, name, image, description, price }) => {
     const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === id);
 
     if (existingItemIndex !== -1) {
-      // Item exists. Update item
+      // Item exists
+      if (cart[existingItemIndex].quantity === quantity) {
+        // Quantity has not changed => Notify and return
+        toast.dismiss();
+        toast.info(`${quantity} X ${name} already on cart!`, {
+          position: toast.POSITION.BOTTOM_CENTER,
+          className: "toast-message",
+          onClick: () => toast.dismiss(),
+        });
+        return;
+      }
+      // Quantity changed => Update item and notify
       const updatedCart = cart.map((item) =>
         item.id === id ? { ...item, quantity: quantity } : item
       );
       localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+      toast.dismiss();
+      toast.success(`Cart updated to have ${quantity} X ${name}!`, {
+        position: toast.POSITION.BOTTOM_CENTER,
+        className: "toast-message",
+        onClick: () => toast.dismiss(),
+      });
     } else {
-      // Item doesn't exist. Add new item
+      // Item doesn't exist. Add new item and notify
       cart.push(item);
       localStorage.setItem("cart", JSON.stringify(cart));
+
+      toast.dismiss();
+      toast.success(
+        `${quantity > 1 ? quantity + " X " : ""}${name} Added to Cart!`,
+        {
+          position: toast.POSITION.BOTTOM_CENTER,
+          className: "toast-message",
+          onClick: () => toast.dismiss(),
+        }
+      );
     }
   };
 
@@ -50,6 +80,7 @@ const MenuListItem = ({ id, name, image, description, price }) => {
         >
           Add to cart
         </button>
+        <ToastContainer />
       </div>
     </li>
   );

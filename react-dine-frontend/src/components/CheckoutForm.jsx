@@ -70,6 +70,7 @@ const CheckoutForm = () => {
               }
             />
           </div>
+          <ErrorMessage name="name" component="div" className="error-message" />
           <div className="checkout__form-input-container">
             <label htmlFor="email" className="checkout__form-label">
               Email
@@ -85,6 +86,11 @@ const CheckoutForm = () => {
               }
             />
           </div>
+          <ErrorMessage
+            name="email"
+            component="div"
+            className="error-message"
+          />
           <div className="checkout__form-input-container">
             <label htmlFor="street" className="checkout__form-label">
               Street
@@ -100,6 +106,11 @@ const CheckoutForm = () => {
               }
             />
           </div>
+          <ErrorMessage
+            name="street"
+            component="div"
+            className="error-message"
+          />
           <div className="checkout__form-input-container">
             <label htmlFor="postalCode" className="checkout__form-label">
               Postal-code
@@ -115,6 +126,11 @@ const CheckoutForm = () => {
               }
             />
           </div>
+          <ErrorMessage
+            name="postalCode"
+            component="div"
+            className="error-message"
+          />
           <div className="checkout__form-input-container">
             <label htmlFor="city" className="checkout__form-label">
               City
@@ -130,22 +146,6 @@ const CheckoutForm = () => {
               }
             />
           </div>
-          <ErrorMessage name="name" component="div" className="error-message" />
-          <ErrorMessage
-            name="email"
-            component="div"
-            className="error-message"
-          />
-          <ErrorMessage
-            name="street"
-            component="div"
-            className="error-message"
-          />
-          <ErrorMessage
-            name="postalCode"
-            component="div"
-            className="error-message"
-          />
           <ErrorMessage name="city" component="div" className="error-message" />
           <button
             type="submit"
