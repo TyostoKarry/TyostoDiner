@@ -1,10 +1,13 @@
 import "./CartList.css";
 
+import { useCart } from "./CartContext";
 import CartListItem from "./CartListItem";
 import CheckoutForm from "./CheckoutForm";
 import { useMemo } from "react";
 
-const CartList = ({ cartItems }) => {
+const CartList = () => {
+  const { cartItems } = useCart();
+
   // Calculate total cost
   const totalCost = useMemo(() => {
     return cartItems.reduce((acc, item) => {
@@ -19,10 +22,7 @@ const CartList = ({ cartItems }) => {
         {cartItems?.map((item) => (
           <CartListItem
             key={item.id}
-            id={item.id}
-            name={item.name}
-            image={item.image}
-            price={item.price}
+            item={item}
             startQuantity={item.quantity}
           />
         ))}

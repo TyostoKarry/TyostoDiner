@@ -1,19 +1,51 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useCallback,
+  useState,
+} from "react";
+import axios from "axios";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(storedCart);
+    fetchCartItems();
   }, []);
 
   const updateCart = (updatedCart) => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart);
+    fetchCartItems();
   };
+
+  const fetchCartItems = useCallback(async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/dishes");
+      const data = await response.data;
+
+      // Get cart items from localStorage, map item id:s to quantitys
+      const cartItemMap = cart.reduce((acc, item) => {
+        acc[item.id] = item.quantity;
+        return acc;
+      }, {});
+
+      // Filter fetched data to only have cart items and add quantity to array
+      const filteredItems = data
+        .filter((item) => cartItemMap.hasOwnProperty(item.id))
+        .map((item) => ({ ...item, quantity: cartItemMap[item.id] }));
+
+      setCartItems(filteredItems);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [cart]);
 
   const addToCart = (modifiedItem) => {
     const updatedCart = [...cart, modifiedItem];
@@ -38,6 +70,8 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
+        cartItems,
+        fetchCartItems,
         addToCart,
         modifyCart,
         removeFromCart,
