@@ -1,8 +1,8 @@
 import axios from "axios";
 
 import "./DinerMenu.css";
+import MenuListItem from "../components/MenuListItem";
 import { useState, useCallback, useEffect } from "react";
-import MenuList from "../components/MenuList";
 
 const DinerMenu = () => {
   const [menuItems, setMenuItems] = useState([]);
@@ -28,8 +28,17 @@ const DinerMenu = () => {
   let context = <h1 className="dinerMenu__loading">Loading...</h1>;
   if (!loading) {
     context = (
-      <div>
-        <MenuList menuItems={menuItems} />
+      <div className="menu__list">
+        {menuItems?.map((item) => (
+          <MenuListItem
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            image={item.image}
+            description={item.description}
+            price={item.price}
+          />
+        ))}
       </div>
     );
   }

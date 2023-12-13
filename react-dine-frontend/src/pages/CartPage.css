@@ -1,7 +1,24 @@
-.centeredStyle {
+.dinerMenu__loading,
+.dinerMenu__empty {
   color: black;
   position: absolute;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.cart__list-container {
+  padding-bottom: 20px;
+}
+
+.cart__list {
+  background-color: rgb(230, 230, 230);
+  max-width: 550px;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.cart__list-h1 {
+  color: black;
 }

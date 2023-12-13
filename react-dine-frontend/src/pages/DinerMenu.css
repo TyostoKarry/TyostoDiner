@@ -5,3 +5,16 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.menu__list {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr 1fr; /* Default 3-column layout */
+  grid-gap: 10px;
+
+  @media screen and (min-width: 2200px) {
+    /* 4-column layout for large screens */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
