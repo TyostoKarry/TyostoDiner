@@ -16,16 +16,16 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(storedCart);
-    fetchCartItems();
+    fetchCartItems(storedCart);
   }, []);
 
   const updateCart = (updatedCart) => {
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCart(updatedCart);
-    fetchCartItems();
+    fetchCartItems(updatedCart);
   };
 
-  const fetchCartItems = useCallback(async () => {
+  const fetchCartItems = useCallback(async (cart) => {
     try {
       const response = await axios.get("http://localhost:5000/api/dishes");
       const data = await response.data;
@@ -45,7 +45,7 @@ export const CartProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
     }
-  }, [cart]);
+  }, []);
 
   const addToCart = (modifiedItem) => {
     const updatedCart = [...cart, modifiedItem];
