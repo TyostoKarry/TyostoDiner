@@ -9,15 +9,16 @@ const DinerMenu = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchMenuItems = useCallback(async () => {
+    setLoading(true);
     try {
-      setLoading[true];
       const response = await axios.get("http://localhost:5000/api/dishes");
       const data = await response.data;
       setMenuItems(data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
-    setLoading(false);
   }, []);
 
   useEffect(() => {

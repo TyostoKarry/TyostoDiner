@@ -12,6 +12,7 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [cartItems, setCartItems] = useState([]);
+  const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -26,6 +27,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const fetchCartItems = useCallback(async (cart) => {
+    setFetching(true);
     try {
       const response = await axios.get("http://localhost:5000/api/dishes");
       const data = await response.data;
@@ -42,8 +44,10 @@ export const CartProvider = ({ children }) => {
         .map((item) => ({ ...item, quantity: cartItemMap[item.id] }));
 
       setCartItems(filteredItems);
+      setFetching(false);
     } catch (error) {
       console.error(error);
+      setFetching(false);
     }
   }, []);
 
@@ -71,6 +75,7 @@ export const CartProvider = ({ children }) => {
       value={{
         cart,
         cartItems,
+        fetching,
         fetchCartItems,
         addToCart,
         modifyCart,
