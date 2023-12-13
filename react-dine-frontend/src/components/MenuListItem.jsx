@@ -1,10 +1,12 @@
 import "./MenuListItem.css";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { useCart } from "./CartContext";
 import "react-toastify/dist/ReactToastify.css";
 import QuantityCounter from "./QuantityCounter";
 
 const MenuListItem = ({ id, name, image, description, price }) => {
+  const { cart, addToCart, modifyCart } = useCart();
   const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
@@ -13,7 +15,6 @@ const MenuListItem = ({ id, name, image, description, price }) => {
       quantity: quantity,
     };
 
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingItemIndex = cart.findIndex((cartItem) => cartItem.id === id);
 
     if (existingItemIndex !== -1) {
@@ -23,34 +24,25 @@ const MenuListItem = ({ id, name, image, description, price }) => {
         toast.dismiss();
         toast.info(`${quantity} X ${name} already on cart!`, {
           position: toast.POSITION.BOTTOM_CENTER,
-          className: "toast-message",
           onClick: () => toast.dismiss(),
         });
         return;
       }
       // Quantity changed => Update item and notify
-      const updatedCart = cart.map((item) =>
-        item.id === id ? { ...item, quantity: quantity } : item
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
-
+      modifyCart(item);
       toast.dismiss();
       toast.success(`Cart updated to have ${quantity} X ${name}!`, {
         position: toast.POSITION.BOTTOM_CENTER,
-        className: "toast-message",
         onClick: () => toast.dismiss(),
       });
     } else {
       // Item doesn't exist. Add new item and notify
-      cart.push(item);
-      localStorage.setItem("cart", JSON.stringify(cart));
-
+      addToCart(item);
       toast.dismiss();
       toast.success(
         `${quantity > 1 ? quantity + " X " : ""}${name} Added to Cart!`,
         {
           position: toast.POSITION.BOTTOM_CENTER,
-          className: "toast-message",
           onClick: () => toast.dismiss(),
         }
       );

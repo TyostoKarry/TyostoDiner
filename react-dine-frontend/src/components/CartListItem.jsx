@@ -1,17 +1,11 @@
 import "./CartListItem.css";
 
 import { useState, useEffect } from "react";
+import { useCart } from "./CartContext";
 import QuantityCounter from "./QuantityCounter";
 
-const CartListItem = ({
-  id,
-  name,
-  image,
-  price,
-  startQuantity,
-  buttonClicked,
-  setbuttonClicked,
-}) => {
+const CartListItem = ({ id, name, image, price, startQuantity }) => {
+  const { modifyCart, removeFromCart } = useCart();
   const [quantity, setQuantity] = useState(startQuantity);
 
   let priceText = price + "€";
@@ -19,24 +13,16 @@ const CartListItem = ({
     priceText = quantity + " X " + price + "€";
   }
 
-  const updateLocalStorage = (itemId, updatedQuantity) => {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
+  const updateLocalStorage = () => {
     if (quantity === 0) {
-      // if quantity is 0, remove item from local storage
-      const updatedCart = cart.filter((item) => item.id !== itemId);
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      removeFromCart({ id: id, quantity: quantity });
     } else {
-      // Find and update cart item in local storage
-      const updatedCart = cart.map((item) =>
-        item.id === itemId ? { ...item, quantity: updatedQuantity } : item
-      );
-      localStorage.setItem("cart", JSON.stringify(updatedCart));
+      modifyCart({ id: id, quantity: quantity });
     }
   };
 
   useEffect(() => {
-    updateLocalStorage(id, quantity);
+    updateLocalStorage();
   }, [quantity]);
 
   return (
@@ -53,8 +39,7 @@ const CartListItem = ({
             quantity={quantity}
             setQuantity={setQuantity}
             minAmmount={0}
-            buttonClicked={buttonClicked}
-            setbuttonClicked={setbuttonClicked}
+            fromCart={true}
           />
         </div>
       </div>

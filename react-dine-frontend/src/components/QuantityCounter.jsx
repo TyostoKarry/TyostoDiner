@@ -1,27 +1,12 @@
 import "./QuantityCounter.css";
-import { useState } from "react";
 
-const QuantityCounter = ({
-  quantity,
-  setQuantity,
-  minAmmount,
-  buttonClicked,
-  setbuttonClicked,
-}) => {
+const QuantityCounter = ({ quantity, setQuantity, minAmmount, fromCart }) => {
   const handleDecrement = () => {
     setQuantity(quantity - 1);
-    // For updating cartItems on CartPage
-    if (setbuttonClicked) {
-      setbuttonClicked(!buttonClicked);
-    }
   };
 
   const handleAddition = () => {
     setQuantity(quantity + 1);
-    // For updating cartItems on CartPage
-    if (setbuttonClicked) {
-      setbuttonClicked(!buttonClicked);
-    }
   };
 
   return (
@@ -34,9 +19,7 @@ const QuantityCounter = ({
       >
         ➖
       </button>
-      <h1
-        className={setbuttonClicked ? "quantity__h1-cart" : "quantity__h1-menu"}
-      >
+      <h1 className={fromCart ? "quantity__h1-cart" : "quantity__h1-menu"}>
         {quantity}
       </h1>
       <button

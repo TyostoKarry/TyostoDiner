@@ -65,7 +65,3 @@
   transform: scale(1.05);
   transition-duration: 100ms;
 }
-
-.toast-message {
-  background: #ff6600;
-}

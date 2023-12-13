@@ -1,10 +1,13 @@
-import axios from "axios";
 import "./CheckoutForm.css";
 
+import axios from "axios";
+import { useCart } from "./CartContext";
 import { Form, Field, ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 
 const CheckoutForm = () => {
+  const { cart } = useCart();
+
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
@@ -14,8 +17,6 @@ const CheckoutForm = () => {
   });
 
   const submitHandler = async (values, { setSubmitting }) => {
-    const cartData = JSON.parse(localStorage.getItem("cart")) || [];
-
     const order = {
       order: {
         customer: {
@@ -25,7 +26,7 @@ const CheckoutForm = () => {
           "postal-code": values.postalCode,
           city: values.city,
         },
-        items: cartData,
+        items: cart,
       },
     };
 

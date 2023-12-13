@@ -3,11 +3,11 @@ import axios from "axios";
 import "./CartPage.css";
 import { useState, useCallback, useEffect } from "react";
 import CartList from "../components/CartList";
+import { useCart } from "../components/CartContext";
 
 const CartPage = () => {
+  const { cart } = useCart();
   const [cartItems, setCartItems] = useState([]);
-  // For updating cart items to match correct quantity when quantity button is clicked
-  const [buttonClicked, setbuttonClicked] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const fetchCartItems = useCallback(async () => {
@@ -17,8 +17,7 @@ const CartPage = () => {
       const data = await response.data;
 
       // Get cart items from localStorage map item id:s to quantitys
-      const cartData = JSON.parse(localStorage.getItem("cart")) || [];
-      const cartItemMap = cartData.reduce((acc, item) => {
+      const cartItemMap = cart.reduce((acc, item) => {
         acc[item.id] = item.quantity;
         return acc;
       }, {});
@@ -33,24 +32,18 @@ const CartPage = () => {
       console.error(error);
     }
     setLoading(false);
-  }, []);
+  }, [cart]);
 
   useEffect(() => {
     fetchCartItems();
-  }, [fetchCartItems, buttonClicked]);
+  }, [fetchCartItems, cart]);
 
   let context = <h1 className="centeredStyle">Cart is empty</h1>;
   if (loading) {
     context = <h1 className="centeredStyle">Loading...</h1>;
   }
   if (cartItems.length != 0) {
-    context = (
-      <CartList
-        cartItems={cartItems}
-        buttonClicked={buttonClicked}
-        setbuttonClicked={setbuttonClicked}
-      />
-    );
+    context = <CartList cartItems={cartItems} />;
   }
 
   return context;
