@@ -1,8 +1,7 @@
-import axios from "axios";
-
 import "./DinerMenu.css";
-import MenuListItem from "../components/MenuListItem";
+import axios from "axios";
 import { useState, useCallback, useEffect } from "react";
+import MenuListItem from "../components/MenuListItem";
 
 const DinerMenu = () => {
   const [menuItems, setMenuItems] = useState([]);

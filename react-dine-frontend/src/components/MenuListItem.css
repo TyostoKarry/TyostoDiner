@@ -62,6 +62,7 @@
 }
 
 .menu__list-item__add-to-cart-button:hover {
-  transform: scale(1.05);
-  transition-duration: 100ms;
+  background-color: rgb(0, 150, 0);
+  transition-duration: 200ms;
+  cursor: pointer;
 }

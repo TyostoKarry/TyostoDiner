@@ -1,5 +1,4 @@
 import "./CheckoutForm.css";
-
 import axios from "axios";
 import { useCart } from "./CartContext";
 import { Form, Field, ErrorMessage, Formik } from "formik";
@@ -30,14 +29,15 @@ const CheckoutForm = () => {
       },
     };
 
-    axios
-      .post("http://localhost:5000/api/orders", order)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/orders",
+        order
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
 
     setSubmitting(false);
   };

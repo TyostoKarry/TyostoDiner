@@ -1,3 +1,4 @@
+// Manages cart
 import {
   createContext,
   useContext,
@@ -10,10 +11,13 @@ import axios from "axios";
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+  // Cart items as in localStorage and how items are sent in orders. Only includes id and quantity
   const [cart, setCart] = useState([]);
+  // Full info of cart items including id, name, price, description, image and quantity
   const [cartItems, setCartItems] = useState([]);
   const [fetching, setFetching] = useState(false);
 
+  // Sets up cart and cartItems on page load
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(storedCart);

@@ -1,5 +1,5 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import DinerMenu from "./pages/DinerMenu";
 import CartPage from "./pages/CartPage";
 import RootLayout from "./pages/RootLayout";

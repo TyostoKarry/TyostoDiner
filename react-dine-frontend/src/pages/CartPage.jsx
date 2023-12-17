@@ -1,14 +1,13 @@
 import "./CartPage.css";
-
-import CartListItem from "../components/CartListItem";
-import CheckoutForm from "../components/CheckoutForm";
 import { useMemo } from "react";
 import { useCart } from "../components/CartContext";
+import CartListItem from "../components/CartListItem";
+import CheckoutForm from "../components/CheckoutForm";
 
 const CartPage = () => {
   const { cartItems, fetching } = useCart();
 
-  // Calculate total cost
+  // Calculate total cost every time cartItems change
   const totalCost = useMemo(() => {
     return cartItems.reduce((acc, item) => {
       return acc + item.price * item.quantity;

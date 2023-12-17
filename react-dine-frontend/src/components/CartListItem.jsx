@@ -1,5 +1,4 @@
 import "./CartListItem.css";
-
 import { useState, useEffect } from "react";
 import { useCart } from "./CartContext";
 import QuantityCounter from "./QuantityCounter";
