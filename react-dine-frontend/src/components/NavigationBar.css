@@ -1,4 +1,7 @@
 .Navigation-bar__container {
+  position: absolute;
+  width: 100%;
+  margin-top: 35px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -7,13 +10,48 @@
 }
 
 .navBar__button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border: 1px solid black;
   border-radius: 5px;
   background-image: url("../assets/menuItemBackground.png");
-  background-size: cover;
+  background-size: auto;
   background-position: center;
   color: black;
   font-size: 50px;
-  width: 200px;
-  margin-inline: 50px;
+  height: 78px;
+  width: 80px;
+  margin-inline: 75px;
+  transition: width 300ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.navBar__button:hover {
+  width: 220px;
+  transition: width 300ms ease;
+}
+
+.navBar__button svg {
+  margin: 15px;
+  width: 50px;
+}
+
+.navBar__button-text {
+  visibility: hidden;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+}
+
+.navBar__button:hover .navBar__button-text {
+  visibility: visible;
+  display: block;
+}
+
+.navBar__img {
+  height: 150px;
 }
