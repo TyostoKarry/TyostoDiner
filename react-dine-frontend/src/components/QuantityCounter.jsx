@@ -12,7 +12,11 @@ const QuantityCounter = ({ quantity, setQuantity, minAmmount, fromCart }) => {
   return (
     <>
       <button
-        className="quantity__button"
+        className={
+          fromCart && quantity == 1
+            ? "quantity__button-remove"
+            : "quantity__button"
+        }
         onClick={handleDecrement}
         disabled={quantity === minAmmount}
         style={quantity === minAmmount ? { pointerEvents: "none" } : {}}

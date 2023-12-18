@@ -38,3 +38,20 @@
   transition-duration: 200ms;
   cursor: pointer;
 }
+
+.quantity__button-remove {
+  flex: 10;
+  border: 1px solid black;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
+  background-color: rgb(155, 0, 0);
+}
+
+.quantity__button-remove:hover {
+  background-color: rgb(200, 0, 0);
+  transition-duration: 200ms;
+  cursor: pointer;
+}
