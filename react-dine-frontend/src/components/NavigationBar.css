@@ -21,16 +21,11 @@
   color: black;
   font-size: 50px;
   height: 78px;
-  width: 80px;
+  min-width: 80px;
   margin-inline: 75px;
   transition: width 300ms ease;
   position: relative;
-  overflow: hidden;
-}
-
-.navBar__button:hover {
-  width: 220px;
-  transition: width 300ms ease;
+  text-decoration: none;
 }
 
 .navBar__button svg {
@@ -38,13 +33,20 @@
   width: 50px;
 }
 
+.navBar__button-text-container {
+  width: 0px;
+  overflow: hidden;
+  transition: width 300ms ease;
+}
+
+.navBar__button:hover .navBar__button-text-container {
+  width: 140px;
+  transition: width 300ms ease;
+}
+
 .navBar__button-text {
   visibility: hidden;
   display: none;
-  position: absolute;
-  top: 50%;
-  left: 65%;
-  transform: translate(-50%, -50%);
 }
 
 .navBar__button:hover .navBar__button-text {

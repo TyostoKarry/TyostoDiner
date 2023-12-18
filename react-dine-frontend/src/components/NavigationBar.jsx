@@ -9,11 +9,15 @@ const NavigationBar = () => {
       <div className="Navigation-bar__container">
         <Link className="navBar__button" to={"/"}>
           <FontAwesomeIcon icon={faUtensils} />
-          <span className="navBar__button-text">Menu</span>
+          <div className="navBar__button-text-container">
+            <span className="navBar__button-text">Menu</span>
+          </div>
         </Link>
         <Link className="navBar__button" to={"/cart"}>
           <FontAwesomeIcon icon={faCartShopping} />
-          <span className="navBar__button-text">Cart</span>
+          <div className="navBar__button-text-container">
+            <span className="navBar__button-text">Cart</span>
+          </div>
         </Link>
       </div>
       <img

@@ -22,7 +22,7 @@
   background-color: black;
 }
 
-.quantity__button {
+.quantity__button-menu {
   flex: 10;
   border: 1px solid black;
   height: 100%;
@@ -33,14 +33,41 @@
   background-color: black;
 }
 
-.quantity__button:hover {
+.quantity__button-menu:hover {
   background-color: rgb(40, 40, 40);
   transition-duration: 200ms;
   cursor: pointer;
 }
 
+.quantity__button-menu svg {
+  height: 30px;
+  color: lightgrey;
+}
+
+.quantity__button-cart {
+  width: 45px;
+  border: 1px solid black;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
+  background-color: black;
+}
+
+.quantity__button-cart:hover {
+  background-color: rgb(40, 40, 40);
+  transition-duration: 200ms;
+  cursor: pointer;
+}
+
+.quantity__button-cart svg {
+  height: 30px;
+  color: lightgrey;
+}
+
 .quantity__button-remove {
-  flex: 10;
+  width: 45px;
   border: 1px solid black;
   height: 100%;
   display: flex;
