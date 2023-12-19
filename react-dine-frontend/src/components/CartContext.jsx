@@ -5,6 +5,7 @@ import {
   useEffect,
   useCallback,
   useState,
+  useMemo,
 } from "react";
 import axios from "axios";
 
@@ -15,8 +16,13 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   // Full info of cart items including id, name, price, description, image and quantity
   const [cartItems, setCartItems] = useState([]);
+  // Info about the orderer to display on OrderSummary
+  const [ordererInfo, setOrdererInfo] = useState({});
+  // For setting the state on CartPage
   const [fetching, setFetching] = useState(false);
   const [fetchError, setFetchError] = useState(false);
+  // Used to open the OrderSummary modal
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   // Sets up cart and cartItems on page load
   useEffect(() => {
@@ -77,17 +83,45 @@ export const CartProvider = ({ children }) => {
     updateCart(updatedCart);
   };
 
+  const clearCart = () => {
+    const updatedCart = [];
+    updateCart(updatedCart);
+    setOrdererInfo({});
+  };
+
+  // Calculate total cost every time cartItems change
+  const totalCost = useMemo(() => {
+    return cartItems.reduce((acc, item) => {
+      return acc + item.price * item.quantity;
+    }, 0);
+  }, [cartItems]);
+
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <CartContext.Provider
       value={{
         cart,
         cartItems,
+        ordererInfo,
         fetching,
         fetchError,
+        modalIsOpen,
+        totalCost,
+        setOrdererInfo,
         fetchCartItems,
         addToCart,
         modifyCart,
         removeFromCart,
+        clearCart,
+        openModal,
+        closeModal,
       }}
     >
       {children}

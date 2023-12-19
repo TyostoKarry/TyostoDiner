@@ -10,13 +10,13 @@ const NavigationBar = () => {
         <Link className="navBar__button" to={"/"}>
           <FontAwesomeIcon icon={faUtensils} />
           <div className="navBar__button-text-container">
-            <span className="navBar__button-text">Menu</span>
+            <span>Menu</span>
           </div>
         </Link>
         <Link className="navBar__button" to={"/cart"}>
           <FontAwesomeIcon icon={faCartShopping} />
           <div className="navBar__button-text-container">
-            <span className="navBar__button-text">Cart</span>
+            <span>Cart</span>
           </div>
         </Link>
       </div>

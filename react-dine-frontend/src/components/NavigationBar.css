@@ -1,12 +1,14 @@
 .Navigation-bar__container {
-  position: absolute;
-  width: 100%;
   margin-top: 35px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   justify-items: center;
   align-items: center;
+  margin-left: 15px;
+  @media screen and (min-width: 1600px) {
+    position: absolute;
+    margin-left: 75px;
+  }
 }
 
 .navBar__button {
@@ -22,10 +24,10 @@
   font-size: 50px;
   height: 78px;
   min-width: 80px;
-  margin-inline: 75px;
   transition: width 300ms ease;
   position: relative;
   text-decoration: none;
+  margin-right: 10px;
 }
 
 .navBar__button svg {
@@ -42,16 +44,6 @@
 .navBar__button:hover .navBar__button-text-container {
   width: 140px;
   transition: width 300ms ease;
-}
-
-.navBar__button-text {
-  visibility: hidden;
-  display: none;
-}
-
-.navBar__button:hover .navBar__button-text {
-  visibility: visible;
-  display: block;
 }
 
 .navBar__img {

@@ -1,22 +1,20 @@
 import "./CartPage.css";
-import { useMemo } from "react";
 import { useCart } from "../components/CartContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import CartListItem from "../components/CartListItem";
 import CheckoutForm from "../components/CheckoutForm";
+import OrderSummary from "../components/OrderSummary";
 
 const CartPage = () => {
-  const { cartItems, fetching, fetchError } = useCart();
+  const { cartItems, fetching, fetchError, totalCost } = useCart();
 
-  // Calculate total cost every time cartItems change
-  const totalCost = useMemo(() => {
-    return cartItems.reduce((acc, item) => {
-      return acc + item.price * item.quantity;
-    }, 0);
-  }, [cartItems]);
-
-  let context = <h1 className="cartPage__empty">Cart is empty</h1>;
+  let context = (
+    <>
+      <h1 className="cartPage__empty">Cart is empty</h1>
+      <OrderSummary />
+    </>
+  );
   if (fetching) {
     context = (
       <div className="cartPage__loading">
@@ -43,6 +41,7 @@ const CartPage = () => {
           <h1 className="cart__list-h1">Total: {totalCost.toFixed(2)}€</h1>
           <CheckoutForm />
         </div>
+        <OrderSummary />
       </div>
     );
   }

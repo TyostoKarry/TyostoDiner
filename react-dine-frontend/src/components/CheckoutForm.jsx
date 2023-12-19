@@ -5,7 +5,7 @@ import { Form, Field, ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 
 const CheckoutForm = () => {
-  const { cart } = useCart();
+  const { cart, setOrdererInfo, openModal } = useCart();
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
@@ -37,8 +37,18 @@ const CheckoutForm = () => {
       console.log(response.data);
     } catch (error) {
       console.error(error);
+      return;
     }
 
+    setOrdererInfo({
+      name: values.name,
+      email: values.email,
+      street: values.street,
+      postalCode: values.postalCode,
+      city: values.city,
+    });
+
+    openModal();
     setSubmitting(false);
   };
 
