@@ -16,6 +16,7 @@ export const CartProvider = ({ children }) => {
   // Full info of cart items including id, name, price, description, image and quantity
   const [cartItems, setCartItems] = useState([]);
   const [fetching, setFetching] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
 
   // Sets up cart and cartItems on page load
   useEffect(() => {
@@ -31,6 +32,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const fetchCartItems = useCallback(async (cart) => {
+    setFetchError(false);
     setFetching(true);
     try {
       const response = await axios.get("http://localhost:5000/api/dishes");
@@ -52,6 +54,7 @@ export const CartProvider = ({ children }) => {
     } catch (error) {
       console.error(error);
       setFetching(false);
+      setFetchError(true);
     }
   }, []);
 
@@ -80,6 +83,7 @@ export const CartProvider = ({ children }) => {
         cart,
         cartItems,
         fetching,
+        fetchError,
         fetchCartItems,
         addToCart,
         modifyCart,

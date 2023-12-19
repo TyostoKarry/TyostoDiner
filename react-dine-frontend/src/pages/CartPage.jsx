@@ -1,11 +1,13 @@
 import "./CartPage.css";
 import { useMemo } from "react";
 import { useCart } from "../components/CartContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import CartListItem from "../components/CartListItem";
 import CheckoutForm from "../components/CheckoutForm";
 
 const CartPage = () => {
-  const { cartItems, fetching } = useCart();
+  const { cartItems, fetching, fetchError } = useCart();
 
   // Calculate total cost every time cartItems change
   const totalCost = useMemo(() => {
@@ -14,9 +16,17 @@ const CartPage = () => {
     }, 0);
   }, [cartItems]);
 
-  let context = <h1 className="dinerMenu__empty">Cart is empty</h1>;
+  let context = <h1 className="cartPage__empty">Cart is empty</h1>;
   if (fetching) {
-    context = <h1 className="dinerMenu__loading">Loading...</h1>;
+    context = (
+      <div className="cartPage__loading">
+        <FontAwesomeIcon icon={faSpinner} spin />
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+  if (fetchError) {
+    context = <h1 className="cartPage__fetchError">Error fetching the API!</h1>;
   }
   if (cartItems.length != 0) {
     context = (

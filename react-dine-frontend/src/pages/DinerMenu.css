@@ -1,17 +1,32 @@
-.dinerMenu__loading {
+.dinerMenu__loading,
+.dinerMenu__fetchError {
   color: black;
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.dinerMenu__loading svg {
+  height: 150px;
 }
 
 .menu__list {
   width: 100%;
   display: grid;
   justify-items: center;
-  grid-template-columns: 1fr 1fr 1fr; /* Default 3-column layout */
+  grid-template-columns: 1fr; /* Default tiny screen 1-column layout */
   grid-gap: 10px;
+
+  @media screen and (min-width: 1100px) {
+    /* 2-column layout for small screens */
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media screen and (min-width: 1600px) {
+    /* 3-column layout for fullhd screens */
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
   @media screen and (min-width: 2200px) {
     /* 4-column layout for large screens */

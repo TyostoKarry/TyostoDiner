@@ -57,9 +57,16 @@ const CheckoutForm = () => {
       {({ isSubmitting, errors, touched }) => (
         <Form className="checkout__form">
           <div className="checkout__form-input-container">
-            <label htmlFor="name" className="checkout__form-label">
-              Name
-            </label>
+            <div className="checkout__form-label-container">
+              <label htmlFor="name" className="checkout__form-label">
+                Name:
+              </label>
+              <ErrorMessage
+                name="name"
+                component="div"
+                className="error-message"
+              />
+            </div>
             <Field
               type="text"
               id="name"
@@ -71,11 +78,17 @@ const CheckoutForm = () => {
               }
             />
           </div>
-          <ErrorMessage name="name" component="div" className="error-message" />
           <div className="checkout__form-input-container">
-            <label htmlFor="email" className="checkout__form-label">
-              Email
-            </label>
+            <div className="checkout__form-label-container">
+              <label htmlFor="email" className="checkout__form-label">
+                Email:
+              </label>
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="error-message"
+              />
+            </div>
             <Field
               type="email"
               id="email"
@@ -87,15 +100,17 @@ const CheckoutForm = () => {
               }
             />
           </div>
-          <ErrorMessage
-            name="email"
-            component="div"
-            className="error-message"
-          />
           <div className="checkout__form-input-container">
-            <label htmlFor="street" className="checkout__form-label">
-              Street
-            </label>
+            <div className="checkout__form-label-container">
+              <label htmlFor="street" className="checkout__form-label">
+                Street:
+              </label>
+              <ErrorMessage
+                name="street"
+                component="div"
+                className="error-message"
+              />
+            </div>
             <Field
               type="text"
               id="street"
@@ -107,15 +122,17 @@ const CheckoutForm = () => {
               }
             />
           </div>
-          <ErrorMessage
-            name="street"
-            component="div"
-            className="error-message"
-          />
           <div className="checkout__form-input-container">
-            <label htmlFor="postalCode" className="checkout__form-label">
-              Postal-code
-            </label>
+            <div className="checkout__form-label-container">
+              <label htmlFor="postalCode" className="checkout__form-label">
+                Postal-code:
+              </label>
+              <ErrorMessage
+                name="postalCode"
+                component="div"
+                className="error-message"
+              />
+            </div>
             <Field
               type="text"
               id="postalCode"
@@ -127,15 +144,17 @@ const CheckoutForm = () => {
               }
             />
           </div>
-          <ErrorMessage
-            name="postalCode"
-            component="div"
-            className="error-message"
-          />
           <div className="checkout__form-input-container">
-            <label htmlFor="city" className="checkout__form-label">
-              City
-            </label>
+            <div className="checkout__form-label-container">
+              <label htmlFor="city" className="checkout__form-label">
+                City:
+              </label>
+              <ErrorMessage
+                name="city"
+                component="div"
+                className="error-message"
+              />
+            </div>
             <Field
               type="text"
               id="city"
@@ -147,7 +166,6 @@ const CheckoutForm = () => {
               }
             />
           </div>
-          <ErrorMessage name="city" component="div" className="error-message" />
           <button
             type="submit"
             className="checkout__form-button"

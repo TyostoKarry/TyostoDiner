@@ -1,10 +1,15 @@
-.dinerMenu__loading,
-.dinerMenu__empty {
+.cartPage__loading,
+.cartPage__empty,
+.cartPage__fetchError {
   color: black;
   position: absolute;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.cartPage__loading svg {
+  height: 150px;
 }
 
 .cart__list-container {
