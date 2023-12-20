@@ -15,13 +15,8 @@
   width: 100%;
   display: grid;
   justify-items: center;
-  grid-template-columns: 1fr; /* Default tiny screen 1-column layout */
+  grid-template-columns: 1fr 1fr; /* Default 2-column layout for small screens */
   grid-gap: 10px;
-
-  @media screen and (min-width: 1100px) {
-    /* 2-column layout for small screens */
-    grid-template-columns: 1fr 1fr;
-  }
 
   @media screen and (min-width: 1600px) {
     /* 3-column layout for fullhd screens */
@@ -31,5 +26,13 @@
   @media screen and (min-width: 2200px) {
     /* 4-column layout for large screens */
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  @media screen and (max-width: 1010px) {
+    /* Flex column layout for mobile */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

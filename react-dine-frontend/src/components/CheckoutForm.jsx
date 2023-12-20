@@ -3,6 +3,8 @@ import axios from "axios";
 import { useCart } from "./CartContext";
 import { Form, Field, ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CheckoutForm = () => {
   const { cart, setOrdererInfo, openModal } = useCart();
@@ -34,9 +36,13 @@ const CheckoutForm = () => {
         "http://localhost:5000/api/orders",
         order
       );
-      console.log(response.data);
     } catch (error) {
       console.error(error);
+      toast.dismiss();
+      toast.error("Something went wrong! Try again later", {
+        position: toast.POSITION.BOTTOM_CENTER,
+        onClick: () => toast.dismiss(),
+      });
       return;
     }
 
@@ -53,139 +59,142 @@ const CheckoutForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={{
-        name: "",
-        email: "",
-        street: "",
-        postalCode: "",
-        city: "",
-      }}
-      validationSchema={validationSchema}
-      onSubmit={submitHandler}
-    >
-      {({ isSubmitting, errors, touched }) => (
-        <Form className="checkout__form">
-          <div className="checkout__form-input-container">
-            <div className="checkout__form-label-container">
-              <label htmlFor="name" className="checkout__form-label">
-                Name:
-              </label>
-              <ErrorMessage
+    <>
+      <Formik
+        initialValues={{
+          name: "",
+          email: "",
+          street: "",
+          postalCode: "",
+          city: "",
+        }}
+        validationSchema={validationSchema}
+        onSubmit={submitHandler}
+      >
+        {({ isSubmitting, errors, touched }) => (
+          <Form className="checkout__form">
+            <div className="checkout__form-input-container">
+              <div className="checkout__form-label-container">
+                <label htmlFor="name" className="checkout__form-label">
+                  Name:
+                </label>
+                <ErrorMessage
+                  name="name"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <Field
+                type="text"
+                id="name"
                 name="name"
-                component="div"
-                className="error-message"
+                className={
+                  errors.name && touched.name
+                    ? "checkout__form-input-error"
+                    : "checkout__form-input"
+                }
               />
             </div>
-            <Field
-              type="text"
-              id="name"
-              name="name"
-              className={
-                errors.name && touched.name
-                  ? "checkout__form-input-error"
-                  : "checkout__form-input"
-              }
-            />
-          </div>
-          <div className="checkout__form-input-container">
-            <div className="checkout__form-label-container">
-              <label htmlFor="email" className="checkout__form-label">
-                Email:
-              </label>
-              <ErrorMessage
+            <div className="checkout__form-input-container">
+              <div className="checkout__form-label-container">
+                <label htmlFor="email" className="checkout__form-label">
+                  Email:
+                </label>
+                <ErrorMessage
+                  name="email"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <Field
+                type="email"
+                id="email"
                 name="email"
-                component="div"
-                className="error-message"
+                className={
+                  errors.email && touched.email
+                    ? "checkout__form-input-error"
+                    : "checkout__form-input"
+                }
               />
             </div>
-            <Field
-              type="email"
-              id="email"
-              name="email"
-              className={
-                errors.email && touched.email
-                  ? "checkout__form-input-error"
-                  : "checkout__form-input"
-              }
-            />
-          </div>
-          <div className="checkout__form-input-container">
-            <div className="checkout__form-label-container">
-              <label htmlFor="street" className="checkout__form-label">
-                Street:
-              </label>
-              <ErrorMessage
+            <div className="checkout__form-input-container">
+              <div className="checkout__form-label-container">
+                <label htmlFor="street" className="checkout__form-label">
+                  Street:
+                </label>
+                <ErrorMessage
+                  name="street"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <Field
+                type="text"
+                id="street"
                 name="street"
-                component="div"
-                className="error-message"
+                className={
+                  errors.street && touched.street
+                    ? "checkout__form-input-error"
+                    : "checkout__form-input"
+                }
               />
             </div>
-            <Field
-              type="text"
-              id="street"
-              name="street"
-              className={
-                errors.street && touched.street
-                  ? "checkout__form-input-error"
-                  : "checkout__form-input"
-              }
-            />
-          </div>
-          <div className="checkout__form-input-container">
-            <div className="checkout__form-label-container">
-              <label htmlFor="postalCode" className="checkout__form-label">
-                Postal-code:
-              </label>
-              <ErrorMessage
+            <div className="checkout__form-input-container">
+              <div className="checkout__form-label-container">
+                <label htmlFor="postalCode" className="checkout__form-label">
+                  Postal-code:
+                </label>
+                <ErrorMessage
+                  name="postalCode"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <Field
+                type="text"
+                id="postalCode"
                 name="postalCode"
-                component="div"
-                className="error-message"
+                className={
+                  errors.postalCode && touched.postalCode
+                    ? "checkout__form-input-error"
+                    : "checkout__form-input"
+                }
               />
             </div>
-            <Field
-              type="text"
-              id="postalCode"
-              name="postalCode"
-              className={
-                errors.postalCode && touched.postalCode
-                  ? "checkout__form-input-error"
-                  : "checkout__form-input"
-              }
-            />
-          </div>
-          <div className="checkout__form-input-container">
-            <div className="checkout__form-label-container">
-              <label htmlFor="city" className="checkout__form-label">
-                City:
-              </label>
-              <ErrorMessage
+            <div className="checkout__form-input-container">
+              <div className="checkout__form-label-container">
+                <label htmlFor="city" className="checkout__form-label">
+                  City:
+                </label>
+                <ErrorMessage
+                  name="city"
+                  component="div"
+                  className="error-message"
+                />
+              </div>
+              <Field
+                type="text"
+                id="city"
                 name="city"
-                component="div"
-                className="error-message"
+                className={
+                  errors.city && touched.city
+                    ? "checkout__form-input-error"
+                    : "checkout__form-input"
+                }
               />
             </div>
-            <Field
-              type="text"
-              id="city"
-              name="city"
-              className={
-                errors.city && touched.city
-                  ? "checkout__form-input-error"
-                  : "checkout__form-input"
-              }
-            />
-          </div>
-          <button
-            type="submit"
-            className="checkout__form-button"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Submitting..." : "Order"}
-          </button>
-        </Form>
-      )}
-    </Formik>
+            <button
+              type="submit"
+              className="checkout__form-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Order"}
+            </button>
+          </Form>
+        )}
+      </Formik>
+      <ToastContainer />
+    </>
   );
 };
 

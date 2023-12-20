@@ -20,6 +20,11 @@
   justify-content: center;
   color: white;
   background-color: black;
+
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    height: 75px;
+  }
 }
 
 .quantity__button-menu {
@@ -31,6 +36,10 @@
   justify-content: center;
   font-size: x-large;
   background-color: black;
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    height: 75px;
+  }
 }
 
 .quantity__button-menu:hover {

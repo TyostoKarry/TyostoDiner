@@ -5,9 +5,14 @@
   justify-items: center;
   align-items: center;
   margin-left: 15px;
+
   @media screen and (min-width: 1600px) {
     position: absolute;
     margin-left: 75px;
+  }
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    justify-content: space-between;
   }
 }
 
@@ -28,6 +33,11 @@
   position: relative;
   text-decoration: none;
   margin-right: 10px;
+
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    max-width: 45%;
+  }
 }
 
 .navBar__button svg {
@@ -36,16 +46,48 @@
 }
 
 .navBar__button-text-container {
-  width: 0px;
-  overflow: hidden;
-  transition: width 300ms ease;
+  @media only screen and (min-width: 1010px) {
+    width: 0px;
+    overflow: hidden;
+    transition: width 300ms ease;
+  }
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    width: 90px;
+  }
+}
+
+.navBar__button-text {
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    font-size: 65%;
+  }
 }
 
 .navBar__button:hover .navBar__button-text-container {
-  width: 140px;
-  transition: width 300ms ease;
+  @media only screen and (min-width: 1010px) {
+    width: 140px;
+    transition: width 300ms ease;
+  }
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.navBar__button:hover svg {
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    color: rgba(0, 0, 0, 0.8);
+  }
 }
 
 .navBar__img {
-  height: 150px;
+  @media only screen and (min-width: 1010px) {
+    height: 150px;
+  }
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    max-width: 90%;
+  }
 }

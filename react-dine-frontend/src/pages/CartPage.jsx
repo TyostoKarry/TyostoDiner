@@ -31,13 +31,15 @@ const CartPage = () => {
       <div className="cart__list-container">
         <div className="cart__list">
           <h1 className="cart__list-h1">Items on cart</h1>
-          {cartItems?.map((item) => (
-            <CartListItem
-              key={item.id}
-              item={item}
-              startQuantity={item.quantity}
-            />
-          ))}
+          <div className="cart__list-scrollable">
+            {cartItems?.map((item) => (
+              <CartListItem
+                key={item.id}
+                item={item}
+                startQuantity={item.quantity}
+              />
+            ))}
+          </div>
           <h1 className="cart__list-h1">Total: {totalCost.toFixed(2)}€</h1>
           <CheckoutForm />
         </div>

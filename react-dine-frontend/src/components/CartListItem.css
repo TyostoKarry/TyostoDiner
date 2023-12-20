@@ -32,4 +32,9 @@
 .cart__list-item-text {
   color: black;
   margin: 0 auto;
+
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    font-size: 20px;
+  }
 }

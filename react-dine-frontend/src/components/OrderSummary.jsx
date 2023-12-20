@@ -1,5 +1,6 @@
 import "./OrderSummary.css";
 import Modal from "react-modal";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../components/CartContext";
 
@@ -18,6 +19,19 @@ const OrderSummary = () => {
     closeModal();
   };
 
+  // Disables background scrolling while modal on screen
+  useEffect(() => {
+    if (modalIsOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [modalIsOpen]);
+
   return (
     <Modal
       isOpen={modalIsOpen}
@@ -28,8 +42,8 @@ const OrderSummary = () => {
       <h1 className="modal__h1">Order Successfull</h1>
       <h2 className="modal__h2">Order Summary</h2>
       <div className="modal__scrollable">
-        {cartItems?.map((item) => (
-          <div className="modal__foodItem-container">
+        {cartItems?.map((item, index) => (
+          <div key={index} className="modal__foodItem-container">
             <h3 className="modal__h3">
               {item.quantity} X {item.name}
             </h3>

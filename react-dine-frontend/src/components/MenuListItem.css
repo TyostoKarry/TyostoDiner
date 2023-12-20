@@ -9,8 +9,12 @@
   border-radius: 10px;
   overflow: hidden;
   margin: 10px;
-
   background-color: #ff8800;
+
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    max-width: 90%;
+  }
 }
 
 .menu__list-item__image {
@@ -45,6 +49,10 @@
   margin-top: auto;
   height: 10%;
   width: 100%;
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    height: 75px;
+  }
 }
 
 .menu__list-item__add-to-cart-button {
@@ -59,6 +67,11 @@
   align-items: center;
   justify-content: center;
   border-left: 1px solid #ff8800;
+
+  @media only screen and (max-width: 1010px) {
+    /* Mobile styles */
+    height: 75px;
+  }
 }
 
 .menu__list-item__add-to-cart-button:hover {
