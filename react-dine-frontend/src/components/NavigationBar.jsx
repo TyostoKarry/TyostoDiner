@@ -20,10 +20,7 @@ const NavigationBar = () => {
           </div>
         </Link>
       </div>
-      <img
-        src={"./src/assets/TyostoDinerTextLogo.png"}
-        className="navBar__img"
-      />
+      <img src={"/TyostoDinerTextLogo.png"} className="navBar__img" />
     </>
   );
 };
