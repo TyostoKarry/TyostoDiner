@@ -1,10 +1,11 @@
 import "./OrderSummary.css";
 import Modal from "react-modal";
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../components/CartContext";
 
 const OrderSummary = () => {
+  const navigate = useNavigate();
   const {
     cartItems,
     ordererInfo,
@@ -17,6 +18,7 @@ const OrderSummary = () => {
   const onClose = () => {
     clearCart();
     closeModal();
+    navigate("/");
   };
 
   // Disables background scrolling while modal on screen
@@ -77,11 +79,9 @@ const OrderSummary = () => {
           <h3 className="modal__h3">{ordererInfo.city}</h3>
         </div>
       </div>
-      <Link to={"/"}>
-        <button className="modal__button" onClick={onClose}>
-          Return to Menu
-        </button>
-      </Link>
+      <button className="modal__button" onClick={onClose}>
+        Return to Menu
+      </button>
     </Modal>
   );
 };
