@@ -1,0 +1,33 @@
+.ErrorPage__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ErrorPage__h1 {
+  color: black;
+  margin: 0;
+}
+
+.ErrorPage__h2 {
+  color: black;
+  margin: 0;
+  margin-bottom: 50px;
+}
+
+.ErrorPage__button {
+  padding: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #ff8800;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ErrorPage__button:hover {
+  background-color: #ff9000;
+}
